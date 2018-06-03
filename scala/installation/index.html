@@ -38,11 +38,13 @@
     
     
       
-        <title>Installation - rdbc-pgsql documentation - 0.3.1.23</title>
+        <title>Installation - rdbc-pgsql documentation - 0.3.1.24</title>
       
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/application.8d40d89b.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.6079476c.css">
       
     
     
@@ -62,7 +64,9 @@
     
   </head>
   
-    <body dir="ltr">
+    
+    
+    <body dir="ltr" data-md-color-primary="green" data-md-color-accent="red">
   
     <svg class="md-svg">
       <defs>
@@ -102,7 +106,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../.." title="rdbc-pgsql documentation - 0.3.1.23" class="md-header-nav__button md-logo">
+        <a href="../.." title="rdbc-pgsql documentation - 0.3.1.24" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -116,7 +120,7 @@
           
             
               <span class="md-header-nav__topic">
-                rdbc-pgsql documentation - 0.3.1.23
+                rdbc-pgsql documentation - 0.3.1.24
               </span>
               <span class="md-header-nav__topic">
                 Installation
@@ -203,7 +207,7 @@
         <i class="md-icon"></i>
       
     </span>
-    rdbc-pgsql documentation - 0.3.1.23
+    rdbc-pgsql documentation - 0.3.1.24
   </label>
   
     <div class="md-nav__source">
@@ -502,11 +506,6 @@
  ! limitations under the License. 
  -->
 
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>rdbc-pgsql project and this documentation is still a work in progress.
-It's not ready yet for production use.</p>
-</div>
 <h2 id="adding-rdbc-pgsql-to-your-project">Adding rdbc-pgsql to your project<a class="headerlink" href="#adding-rdbc-pgsql-to-your-project" title="Permanent link">&para;</a></h2>
 <p>rdbc and rdbc-pgsql JARs are published to
 <a href="https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22io.rdbc.pgsql%22">Maven Central</a>
@@ -516,7 +515,7 @@ Java 8 runtime. rdbc-pgsql targets 0.0.80 rdbc API version.</p>
 <p>For sbt projects, add the following to <code>build.sbt</code>:</p>
 <div class="codehilite"><pre><span></span><span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Vector</span><span class="o">(</span>
   <span class="s">&quot;io.rdbc&quot;</span> <span class="o">%%</span> <span class="s">&quot;rdbc-api-scala&quot;</span> <span class="o">%</span> <span class="s">&quot;0.0.80&quot;</span><span class="o">,</span>
-  <span class="s">&quot;io.rdbc.pgsql&quot;</span> <span class="o">%%</span> <span class="s">&quot;pgsql-transport-netty&quot;</span> <span class="o">%</span> <span class="s">&quot;0.3.1.23&quot;</span>
+  <span class="s">&quot;io.rdbc.pgsql&quot;</span> <span class="o">%%</span> <span class="s">&quot;pgsql-transport-netty&quot;</span> <span class="o">%</span> <span class="s">&quot;0.3.1.24&quot;</span>
 <span class="o">)</span>
 </pre></div>
 
@@ -525,13 +524,13 @@ Java 8 runtime. rdbc-pgsql targets 0.0.80 rdbc API version.</p>
 <p>For Gradle projects, add the following to the <code>dependencies</code> section of <code>build.gradle</code>:</p>
 <p>Scala 2.12</p>
 <div class="codehilite"><pre><span></span><span class="n">compile</span> <span class="nl">group:</span> <span class="s1">&#39;io.rdbc&#39;</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">&#39;rdbc-api-scala_2.12&#39;</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">&#39;0.0.80&#39;</span>
-<span class="n">compile</span> <span class="nl">group:</span> <span class="s1">&#39;io.rdbc.pgsql&#39;</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">&#39;pgsql-transport-netty_2.12&#39;</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">&#39;0.3.1.23&#39;</span>
+<span class="n">compile</span> <span class="nl">group:</span> <span class="s1">&#39;io.rdbc.pgsql&#39;</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">&#39;pgsql-transport-netty_2.12&#39;</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">&#39;0.3.1.24&#39;</span>
 </pre></div>
 
 
 <p>Scala 2.11</p>
 <div class="codehilite"><pre><span></span><span class="n">compile</span> <span class="nl">group:</span> <span class="s1">&#39;io.rdbc&#39;</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">&#39;rdbc-api-scala_2.11&#39;</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">&#39;0.0.80&#39;</span>
-<span class="n">compile</span> <span class="nl">group:</span> <span class="s1">&#39;io.rdbc.pgsql&#39;</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">&#39;pgsql-transport-netty_2.11&#39;</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">&#39;0.3.1.23&#39;</span>
+<span class="n">compile</span> <span class="nl">group:</span> <span class="s1">&#39;io.rdbc.pgsql&#39;</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">&#39;pgsql-transport-netty_2.11&#39;</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">&#39;0.3.1.24&#39;</span>
 </pre></div>
 
 
@@ -546,7 +545,7 @@ Java 8 runtime. rdbc-pgsql targets 0.0.80 rdbc API version.</p>
 <span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>io.rdbc.pgsql<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>pgsql-transport-netty_2.12<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>0.3.1.23<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;version&gt;</span>0.3.1.24<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </pre></div>
 
@@ -560,7 +559,7 @@ Java 8 runtime. rdbc-pgsql targets 0.0.80 rdbc API version.</p>
 <span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>io.rdbc.pgsql<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>pgsql-transport-netty_2.11<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>0.3.1.23<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;version&gt;</span>0.3.1.24<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </pre></div>
                 

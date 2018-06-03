@@ -38,11 +38,13 @@
     
     
       
-        <title>Constructing connection factory - rdbc-pgsql documentation - 0.3.1.23</title>
+        <title>Constructing connection factory - rdbc-pgsql documentation - 0.3.1.24</title>
       
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/application.8d40d89b.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.6079476c.css">
       
     
     
@@ -62,7 +64,9 @@
     
   </head>
   
-    <body dir="ltr">
+    
+    
+    <body dir="ltr" data-md-color-primary="green" data-md-color-accent="red">
   
     <svg class="md-svg">
       <defs>
@@ -102,7 +106,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../.." title="rdbc-pgsql documentation - 0.3.1.23" class="md-header-nav__button md-logo">
+        <a href="../.." title="rdbc-pgsql documentation - 0.3.1.24" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -116,7 +120,7 @@
           
             
               <span class="md-header-nav__topic">
-                rdbc-pgsql documentation - 0.3.1.23
+                rdbc-pgsql documentation - 0.3.1.24
               </span>
               <span class="md-header-nav__topic">
                 Constructing connection factory
@@ -203,7 +207,7 @@
         <i class="md-icon"></i>
       
     </span>
-    rdbc-pgsql documentation - 0.3.1.23
+    rdbc-pgsql documentation - 0.3.1.24
   </label>
   
     <div class="md-nav__source">
@@ -344,6 +348,19 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#default-value-vectorempty" title="Default value: Vector.empty." class="md-nav__link">
+    Default value: Vector.empty.
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#netty-transport-specific-options" title="Netty transport specific options" class="md-nav__link">
@@ -500,6 +517,19 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#default-value-vectorempty" title="Default value: Vector.empty." class="md-nav__link">
+    Default value: Vector.empty.
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#netty-transport-specific-options" title="Netty transport specific options" class="md-nav__link">
     Netty transport specific options
@@ -556,11 +586,6 @@
  ! limitations under the License. 
  -->
 
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>rdbc-pgsql project and this documentation is still a work in progress.
-It's not ready yet for production use.</p>
-</div>
 <p>As rdbc documentation <a href="http://docs.api.rdbc.io/scala/connection/#connecting-to-a-database">mentions</a>,
 to use the API you need to construct a driver specific <a href=""><code>ConnectionFactory</code></a> 
 implementation. In rdbc-pgsql case, it's going to be
@@ -698,40 +723,33 @@ options non-specific to any transport library.</p>
 <h4 id="other">Other<a class="headerlink" href="#other" title="Permanent link">&para;</a></h4>
 <ul>
 <li>
-<p><strong>typeConvertersProviders</strong></p>
-<p>Providers providing converters that can do conversions between Scala types
- that represent database values and any other types. This option
- may be useful if you want to use Scala types not supported by default by rdbc.
- By default, conversions listed <a href="">here</a> are provided.</p>
-<p>Default value: <code class="codehilite"><span class="nc">Vector</span><span class="o">(</span><span class="k">new</span> <span class="nc">StandardTypeConvertersProvider</span><span class="o">)</span></code>.</p>
+<p><strong>typeConverters</strong></p>
+<p>Column values and statement arguments have some nominal Scala types that
+ directly correspond to PostgreSQL types. Converters specified here will 
+ convert between the nominal type and the type specified by the client. 
+ For example, <code>int4</code> column is nominally represented by <code>PgInt4</code> class but 
+ because there is a converter that can convert between <code>PgInt4</code> and <code>Int</code>
+ whenever a <code>PgInt4</code> is expected client can supply an <code>Int</code>.</p>
+<p>Converters specified here supplement built-in converters.</p>
+<p>Default value: <code class="codehilite"><span class="nc">Vector</span><span class="o">.</span><span class="n">empty</span></code>.</p>
 </li>
 </ul>
 <hr />
 <ul>
 <li>
-<p><strong>pgTypesProviders</strong></p>
-<p>Providers providing definitions of PostgreSQL types and means to serialize
- and deserialize them. By default, types listed <a href="">here</a> are supported
- and <a href="">scodec</a> library is used for serialization and deserialization.</p>
-<p>Default value: <code class="codehilite"><span class="nc">Vector</span><span class="o">(</span><span class="k">new</span> <span class="nc">ScodecPgTypesProvider</span><span class="o">)</span></code>.</p>
+<p><strong>typeMappings</strong></p>
+<p>Statement arguments have some nominal types that directly correspond
+ to PostgreSQL types. If non-nominal type is used as a statement argument
+ there has to be a mapping between this type and a nominal type. For instance,
+ <code>String</code> maps to <code>PgText</code> type.</p>
+<p>Type mappings specified there supplement built-in mappings.     </p>
+<h2 id="default-value-vectorempty">Default value: <code class="codehilite"><span class="nc">Vector</span><span class="o">.</span><span class="n">empty</span></code>.<a class="headerlink" href="#default-value-vectorempty" title="Permanent link">&para;</a></h2>
 </li>
-</ul>
-<hr />
-<ul>
 <li>
-<p><strong>msgDecoderFactory</strong></p>
-<p>A factory creating PostgreSQL protocol message decoder. By default,
- <a href="">scodec</a> library is used to decode messages.</p>
-<p>Default value: <code class="codehilite"><span class="k">new</span> <span class="nc">ScodecDecoderFactory</span></code>.</p>
-</li>
-</ul>
-<hr />
-<ul>
-<li>
-<p><strong>msgEncoderFactory</strong></p>
-<p>A factory creating PostgreSQL protocol message encoder. By default,
- <a href="">scodec</a> library is used to encode messages.</p>
-<p>Default value: <code class="codehilite"><span class="k">new</span> <span class="nc">ScodecEncoderFactory</span></code>.</p>
+<p><strong>typeCodecs</strong></p>
+<p>Codecs for PostgreSQL types not supported by default by the driver. </p>
+<p>Codecs specified here supplement built-in codecs.</p>
+<p>Default value: <code class="codehilite"><span class="nc">Vector</span><span class="o">.</span><span class="n">empty</span></code>.</p>
 </li>
 </ul>
 <hr />
